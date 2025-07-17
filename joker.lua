@@ -12,7 +12,7 @@ SMODS.Joker {
 	key = "joker",
 	config = { extra = { mult = 4 } },
 	rarity = 1,
-	atlas = "not_jokers",
+	atlas = "pok_jokers",
 	pos = { x = 0, y = 0 },
 	cost = 2,
 	blueprint_compat = true,

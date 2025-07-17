@@ -1,15 +1,15 @@
 {
-	"id": "nothing",
-	"name": "Nothing",
-	"display_name": "Nothing",
+	"id": "pokerjokers",
+	"name": "PokerJokers",
+	"display_name": "PokerJokers",
 	"author": [
-		"Nobody"
+		"Poker The Poker"
 	],
-	"description": "Literally just contains Joker.",
-	"prefix": "not",
+	"description": "pokerjokers roguelike cards",
+	"prefix": "pok",
 	"main_file": "main.lua",
-	"priority": 0,
-	"badge_colour": "000000",
+	"priority": 123,
+	"badge_colour": "FF00655",
 	"badge_text_colour": "FFFFFF",
 	"version": "0.0.0",
 	"dependencies": []
