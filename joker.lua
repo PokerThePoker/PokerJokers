@@ -14,9 +14,9 @@ SMODS.Joker {
 	rarity = 2,
 	atlas = "pok_jokers",
 	pos = { x = 0, y = 0 },
-	cost = 2,
+	cost = 7,
 	blueprint_compat = true,
-	    loc_vars = function(self, info_queue, card)
+	loc_vars = function(self, info_queue, card)
         return { vars = { card.ability.extra.discard_limit } }
     end,
     add_to_deck = function(self, card, from_debuff)
@@ -25,7 +25,33 @@ SMODS.Joker {
     remove_from_deck = function(self, card, from_debuff)
         SMODS.change_discard_limit(-card.ability.extra.discard_limit)
     end
+}
 
+SMODS.Joker {
+	key = "trash_bin",
+	config = { extra = { chips = 0, chips_mod = 3 } },
+	rarity = 1,
+	atlas = "pok_jokers",
+	pos = { x = 0, y = 0 },
+	cost = 4,
+	blueprint_compat = true,
+	loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.chips, card.ability.extra.chips_mod } }
+    end,
+	calculate = function(self, card, context)
+		if context.discard and not context.blueprint then
+			card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chips_mod
+			return {
+				message = "+".. card.ability.extra.chips .. " Chips",
+				colour = G.C.BLUE,
+			}
+		end
+		if context.joker_main then
+			return {
+				chips = card.ability.extra.chips,
+			}
+		end
+	end
 }
 
 ----------------------------------------------
