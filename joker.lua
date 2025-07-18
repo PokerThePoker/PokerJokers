@@ -9,23 +9,23 @@ SMODS.Atlas {
 }
 
 SMODS.Joker {
-	key = "joker",
-	config = { extra = { mult = 4 } },
-	rarity = 1,
+	key = "seven_fingers",
+	config = { extra = { discard_limit = 2 } },
+	rarity = 2,
 	atlas = "pok_jokers",
 	pos = { x = 0, y = 0 },
 	cost = 2,
 	blueprint_compat = true,
-	loc_vars = function(self, info_queue, card)
-		return { vars = { card.ability.extra.mult } }
-	end,
-	calculate = function(self, card, context)
-		if context.joker_main then
-			return {
-				mult = card.ability.extra.mult
-			}
-		end
-	end
+	    loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.discard_limit } }
+    end,
+    add_to_deck = function(self, card, from_debuff)
+        SMODS.change_discard_limit(card.ability.extra.discard_limit)
+    end,
+    remove_from_deck = function(self, card, from_debuff)
+        SMODS.change_discard_limit(-card.ability.extra.discard_limit)
+    end
+
 }
 
 ----------------------------------------------

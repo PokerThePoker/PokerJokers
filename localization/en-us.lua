@@ -1,10 +1,11 @@
 return {
 	descriptions = {
 		Joker = {
-			j_pok_joker = {
-				name = "Joker",
+			j_pok_seven_fingers = {
+				name = "Seven Fingers",
 				text = {
-					"{C:mult}+#1#{} Mult",
+					"Discard up to",
+					"{C:attention}#1#{} additional cards",
 				},
 			},
 		},
