@@ -15,7 +15,7 @@ SMODS.Joker {
 	atlas = "pok_jokers",
 	pos = { x = 0, y = 0 },
 	cost = 7,
-	blueprint_compat = true,
+	blueprint_compat = false,
 	loc_vars = function(self, info_queue, card)
         return { vars = { card.ability.extra.discard_limit } }
     end,
@@ -29,11 +29,11 @@ SMODS.Joker {
 
 SMODS.Joker {
 	key = "trash_bin",
-	config = { extra = { chips = 0, chips_mod = 3 } },
-	rarity = 1,
+	config = { extra = { chips = 0, chips_mod = 1 } },
+	rarity = 2,
 	atlas = "pok_jokers",
 	pos = { x = 0, y = 0 },
-	cost = 4,
+	cost = 6,
 	blueprint_compat = true,
 	loc_vars = function(self, info_queue, card)
         return { vars = { card.ability.extra.chips, card.ability.extra.chips_mod } }
@@ -53,6 +53,5 @@ SMODS.Joker {
 		end
 	end
 }
-
 ----------------------------------------------
 ------------MOD CODE END----------------------
