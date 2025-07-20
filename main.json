@@ -9,7 +9,7 @@
 	"prefix": "pok",
 	"main_file": "main.lua",
 	"priority": 123,
-	"badge_colour": "FF00655",
+	"badge_colour": "FF0055",
 	"badge_text_colour": "FFFFFF",
 	"version": "0.0.0",
 	"dependencies": []

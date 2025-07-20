@@ -53,5 +53,25 @@ SMODS.Joker {
 		end
 	end
 }
+
+SMODS.Joker {
+    key = "cracked_jolly_joker",
+    config = { extra = { mult = 50, type = 'Pair' }, },
+	rarity = 3,
+	atlas = "pok_jokers",
+	pos = { x = 0, y = 0 },
+	cost = 9,
+    blueprint_compat = true,
+    loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.mult, localize(card.ability.extra.type, 'poker_hands') } }
+    end,
+    calculate = function(self, card, context)
+        if context.joker_main and next(context.poker_hands[card.ability.extra.type]) then
+            return {
+                mult = card.ability.extra.mult
+            }
+        end
+    end
+}
 ----------------------------------------------
 ------------MOD CODE END----------------------

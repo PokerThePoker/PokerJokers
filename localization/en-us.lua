@@ -17,6 +17,14 @@ return {
 					"{C:inactive}(Currently{} {C:chips}+#1#{} {C:inactive}Chips){}"
 				},
 			},
+			j_pok_cracked_jolly_joker = {
+				name = "Cracked Jolly Joker",
+				text = {
+					"{C:mult}+50{} Mult if played",
+					"hand contains",
+					"a {C:attention}#2#{}",
+				},
+			},
 		},
 	},
 }
