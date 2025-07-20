@@ -25,6 +25,12 @@ return {
 					"a {C:attention}#2#{}",
 				},
 			},
+			j_pok_three_quarter_joker = {
+				name = "Three Quarter Joker",
+				text = {
+					"{C:red}X#1#{} base Blind size",
+				},
+			},
 		},
 	},
 }

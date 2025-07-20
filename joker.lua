@@ -73,5 +73,27 @@ SMODS.Joker {
         end
     end
 }
+
+SMODS.Joker {
+	key = "three_quarter_joker",
+	config = { extra = { blind_size = 0.75 } },
+	rarity = 2,
+	atlas = "pok_jokers",
+	pos = { x = 0, y = 0 },
+	cost = 6,
+	blueprint_compat = false,
+	loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.blind_size } }
+    end,
+	calculate = function(self, card, context)
+        if context.setting_blind then
+            G.GAME.blind.chips = G.GAME.blind.chips * card.ability.extra.blind_size
+            G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
+            play_sound("cancel")
+            card:juice_up()
+        end
+    end,
+}
+
 ----------------------------------------------
 ------------MOD CODE END----------------------
