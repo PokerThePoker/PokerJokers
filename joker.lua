@@ -42,16 +42,17 @@ SMODS.Joker {
 		if context.discard and not context.blueprint then
 			card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chips_mod
 			return {
-				message = "+".. card.ability.extra.chips .. " Chips",
-				colour = G.C.BLUE,
+				delay = 0.2,
+				message = "+" .. card.ability.extra.chips,
+				colour = G.C.CHIPS,
 			}
 		end
 		if context.joker_main then
-			return {
-				chips = card.ability.extra.chips,
+			return{
+				chips = card.ability.extra.chips
 			}
 		end
-	end
+	end,
 }
 
 SMODS.Joker {
