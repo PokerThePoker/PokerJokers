@@ -23,6 +23,13 @@ return {
 					"{C:red}X#1#{} base Blind size",
 				},
 			},
+			j_pok_hermit_joker = {
+				name = "Hermit Joker",
+				text = {
+					"{X:mult,C:white}X#1#{} Mult",
+					"{C:inactive}(Max of{} {C:mult}+#2#{}{C:inactive}){}",
+				},
+			},
 		},
 	},
 }

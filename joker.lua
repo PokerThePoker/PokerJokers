@@ -48,7 +48,7 @@ SMODS.Joker {
 			}
 		end
 		if context.joker_main then
-			return{
+			return {
 				chips = card.ability.extra.chips
 			}
 		end
@@ -72,6 +72,32 @@ SMODS.Joker {
             G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
             play_sound("cancel")
             card:juice_up()
+        end
+    end,
+}
+
+SMODS.Joker {
+	key = "hermit_joker",
+	config = { extra = { Xmult = 2, mult = 20 } },
+	rarity = 1,
+	atlas = "pok_jokers",
+	pos = { x = 0, y = 0 },
+	cost = 5,
+	blueprint_compat = true,
+	loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.Xmult, card.ability.extra.mult } }
+    end,
+	calculate = function(self, card, context)
+        if context.joker_main then
+            if mult * card.ability.extra.Xmult <= ( card.ability.extra.mult * 2 ) then
+              return {
+                  Xmult = card.ability.extra.Xmult
+              }
+          else
+              return {
+                  mult = card.ability.extra.mult
+              }
+          end
         end
     end,
 }
