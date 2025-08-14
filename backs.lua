@@ -1,0 +1,28 @@
+----------------------------------------------
+------------MOD CODE -------------------------
+
+SMODS.Atlas {
+	key = "placeholders",
+	path = "atlas_placeholders.png",
+	px = 71,
+	py = 95
+}
+
+SMODS.Back {
+    key = "orange",
+    pos = { x = 4, y = 2 },
+    config = { hand_size = 1 },
+    atlas = "pok_placeholders",
+    loc_vars = function(self, info_queue, back)
+        return { vars = { self.config.hand_size } }
+    end,
+    unlocked = false,
+    locked_loc_vars = function(self, info_queue, back)
+        return { vars = { 150 } }
+    end,
+    check_for_unlock = function(self, args)
+        return args.type == 'discover_amount' and args.amount >= 150
+    end
+}
+----------------------------------------------
+------------MOD CODE END----------------------

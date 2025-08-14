@@ -1,5 +1,18 @@
 return {
 	descriptions = {
+		Back = {
+			b_pok_orange = {
+				name = "Orange Deck",
+				text = {
+					"{C:attention}+#1#{} hand size"
+				},
+				unlock = {
+                    "Discover at least",
+                    "{C:attention}#1#{} items from",
+                    "your collection",
+                }
+			}
+		},
 		Joker = {
 			j_pok_seven_fingers = {
 				name = "Seven Fingers",
