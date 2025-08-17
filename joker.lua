@@ -32,7 +32,7 @@ SMODS.Joker {
 	config = { extra = { chips = 0, chips_mod = 1 } },
 	rarity = 2,
 	atlas = "pok_jokers",
-	pos = { x = 0, y = 0 },
+	pos = { x = 1, y = 0 },
 	cost = 6,
 	blueprint_compat = true,
 	loc_vars = function(self, info_queue, card)
