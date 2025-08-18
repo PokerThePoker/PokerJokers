@@ -102,5 +102,27 @@ SMODS.Joker {
     end,
 }
 
+if next(SMODS.find_mod("entr")) then
+	SMODS.Joker {
+	key = "sunscreen",
+	config = { extra = { plus_asc = -2, Xmult = 3 } },
+	rarity = 2,
+	atlas = "pok_jokers",
+	pos = { x = 0, y = 0 },
+	cost = 7,
+	blueprint_compat = true,
+	loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.plus_asc, card.ability.extra.Xmult } }
+    end,
+	calculate = function(self, card, context)
+        if context.joker_main then
+            return {
+                plus_asc = card.ability.extra.plus_asc, Xmult = card.ability.extra.Xmult
+            }
+        end
+    end,
+}
+end
+
 ----------------------------------------------
 ------------MOD CODE END----------------------

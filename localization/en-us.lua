@@ -43,6 +43,13 @@ return {
 					"{C:inactive}(Max of{} {C:mult}+#2#{}{C:inactive}){}",
 				},
 			},
+			j_pok_sunscreen = {
+				name = "Sunscreen",
+				text = {
+					"{X:mult,C:white}X#2#{} Mult",
+					"{C:gold}#1#{} Ascension Power"
+				},
+			},
 		},
 	},
 }
