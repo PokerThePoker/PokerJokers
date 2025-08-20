@@ -1,16 +1,27 @@
 -- a file specificlaly to load all other lua files in the mod (and for config stuff)
 PokerJoker = SMODS.current_mod
 
-function PokerJoker.replacecards(area, replace, bypass_eternal, keep) --Cards not keeping editions/seals/stickers is intended. //Probably extremely inefficient /// Like why tf did i make the keep n entire seperate section. I probably wont even use "replace" or teh destruction part of this like ever.
-	if area == G.shop_booster.cards or area == G.shop_vouchers.cards then --Setting the area as these 2 disables the entire thing below and will not have a support for them anytime soon cause NONE of the jokers does anything with destroyed booster PACKS and VOUCHERS. Including mods
+local files = {
+	"joker",
+	"backs",
+}
+for i, v in pairs(files) do
+	assert(SMODS.load_file(v..".lua"))()
+end
+
+-- _flip does nothing currently
+function PokerJoker.replacecards(area, replace, bypass_eternal, keep, keeporiginal, _flip) --Cards not keeping editions/seals/stickers is intended. //Probably extremely inefficient /// Like why tf did i make the keep n entire seperate section. I probably wont even use "replace" or teh destruction part of this like ever.
+	if G.shop_booster and area == G.shop_booster.cards or G.shop_vouchers and area == G.shop_vouchers.cards then --Setting the area as these 2 disables the entire thing below and will not have a support for them anytime soon cause NONE of the jokers does anything with destroyed booster PACKS and VOUCHERS. Including mods
 		if area == G.shop_booster.cards then
 			for i = 1, #area do
 				local tab = {}
 				for i = 1, #G.P_CENTER_POOLS.Booster do
 					tab[#tab + 1] = G.P_CENTER_POOLS.Booster[i].key
 				end
-				area[i]:juice_up()
-				area[i]:set_ability(pseudorandom_element(tab))
+				if area[i] ~= keeporiginal and area[i].ability.set == "Booster" then
+					area[i]:juice_up()
+					area[i]:set_ability(pseudorandom_element(tab))
+				end
 				tab = {}
 			end
 		end
@@ -20,8 +31,10 @@ function PokerJoker.replacecards(area, replace, bypass_eternal, keep) --Cards no
 				for i = 1, #G.P_CENTER_POOLS.Voucher do
 					tab[#tab + 1] = G.P_CENTER_POOLS.Voucher[i].key
 				end
-				area[i]:juice_up()
-				area[i]:set_ability(pseudorandom_element(tab))
+				if area[i] ~= keeporiginal and area[i].ability.set == "Voucher" then
+					area[i]:juice_up()
+					area[i]:set_ability(pseudorandom_element(tab))
+				end
 				tab = {}
 			end
 		end
@@ -54,9 +67,11 @@ function PokerJoker.replacecards(area, replace, bypass_eternal, keep) --Cards no
 								tab[#tab + 1] = G.P_CENTER_POOLS.Joker[i].key
 							end
 						end
-						area[i]:juice_up()
-						area[i]:set_ability(pseudorandom_element(tab))
-						tab = {}
+						if area[i] ~= keeporiginal then
+							area[i]:juice_up()
+							area[i]:set_ability(pseudorandom_element(tab))
+							tab = {}
+						end
 					else
 						local set = area[i].ability.set
 						local rarity = SMODS.poll_rarity(set)
@@ -76,36 +91,45 @@ function PokerJoker.replacecards(area, replace, bypass_eternal, keep) --Cards no
 								tab[#tab + 1] = G.P_CENTER_POOLS.Joker[i].key
 							end
 						end
-						area[i]:juice_up()
-						area[i]:set_ability(pseudorandom_element(tab))
+						if area[i] ~= keeporiginal then
+							area[i]:juice_up()
+							area[i]:set_ability(pseudorandom_element(tab))
+						end
 						tab = {}
 					end
 				elseif area[i].ability.set then
 					local set = area[i].ability.set
 					local tab = {}
-				--[[	if G.STATE == G.STATES.STANDARD_PACK or area == G.hand.cards then
+					if
+						area[i].ability.set == "Enhanced"
+						or area[i].ability.set == "Default"
+						or area[i].ability.set == "Playing Card"
+						or area == G.hand.cards
+					then
 						area[i]:juice_up()
 						local _suit, _rank =
 							pseudorandom_element(SMODS.Suits).key, pseudorandom_element(SMODS.Ranks).card_key
 						SMODS.change_base(area[i], _suit, _rank)
 						area[i]:set_ability(SMODS.poll_enhancement())
 						area[i]:set_edition(poll_edition())
-					else]]
+					else
 						for i = 1, #G.P_CENTER_POOLS.Consumeables do
 							if G.P_CENTER_POOLS.Consumeables[i].set == set then
 								tab[#tab + 1] = G.P_CENTER_POOLS.Consumeables[i].key
 							end
 						end
+					end
+					if area[i] ~= keeporiginal then
 						area[i]:juice_up()
 						area[i]:set_ability(pseudorandom_element(tab))
 					end
 				end
-			--end
+			end
 		else
 			if replace then --Doesnt stick to joker rarities
 				for i = 1, #area do
 					if bypass_eternal then
-						if area[i].ability.set then
+						if area[i].ability.set and area[i] ~= keeporiginal then
 							local set = area[i].ability.set
 							SMODS.destroy_cards(area[i], true)
 							SMODS.add_card({
@@ -114,7 +138,7 @@ function PokerJoker.replacecards(area, replace, bypass_eternal, keep) --Cards no
 							})
 						end
 					else
-						if area[i].ability.set and not area[i].ability.eternal then
+						if area[i].ability.set and not area[i].ability.eternal and area[i] ~= keeporiginal then
 							local set = area[i].ability.set
 							SMODS.destroy_cards(area[i])
 							SMODS.add_card({
@@ -127,7 +151,7 @@ function PokerJoker.replacecards(area, replace, bypass_eternal, keep) --Cards no
 			else
 				for i = 1, #area do
 					if bypass_eternal then
-						if area[i].config.center.rarity then --Reroll them while keeping the same rarity
+						if area[i].config.center.rarity and area[i] ~= keeporiginal then --Reroll them while keeping the same rarity
 							local rarity
 							if area[i].config.center.rarity == 1 then
 								rarity = "Common"
@@ -147,29 +171,35 @@ function PokerJoker.replacecards(area, replace, bypass_eternal, keep) --Cards no
 								rarity = rarity,
 								area = G.pack_cards,
 							})
-						elseif area[i].ability.set then
-				--[[			if G.STATE == G.STATES.STANDARD_PACK or area == G.hand.cards then
-								SMODS.destroy_cards(area[i])
+						elseif area[i].ability.set and area[i] ~= keeporiginal then
+							if
+								area[i].ability.set == "Enhanced"
+								or area[i].ability.set == "Default"
+								or area[i].ability.set == "Playing Card"
+								or area == G.hand.cards
+							then
+								area[i]:juice_up()
 								local _suit, _rank =
 									pseudorandom_element(SMODS.Suits).key, pseudorandom_element(SMODS.Ranks).card_key
-								local acard = SMODS.create_card({
-									set = "Playing Card",
-									area = area,
-								})
-								SMODS.change_base(acard, _suit, _rank)
-								acard:set_ability(SMODS.poll_enhancement())
-								acard:set_edition(poll_edition())
-							else]]
-								local set = area[i].ability.set
-								SMODS.destroy_cards(area[i], true)
-								SMODS.add_card({
-									set = set,
-									area = G.pack_cards,
-								})
+								SMODS.change_base(area[i], _suit, _rank)
+								area[i]:set_ability(SMODS.poll_enhancement())
+								area[i]:set_edition(poll_edition())
+							else
+								for i = 1, #G.P_CENTER_POOLS.Consumeables do
+									if G.P_CENTER_POOLS.Consumeables[i].set == set then
+										tab[#tab + 1] = G.P_CENTER_POOLS.Consumeables[i].key
+									end
+								end
 							end
-							--end
+							local set = area[i].ability.set
+							SMODS.destroy_cards(area[i], true)
+							SMODS.add_card({
+								set = set,
+								area = G.pack_cards,
+							})
+						end
 					else
-						if area[i].config.center.rarity and not area[i].ability.eternal then
+						if area[i].config.center.rarity and not area[i].ability.eternal and area[i] ~= keeporiginal then
 							local rarity
 							if area[i].config.center.rarity == 1 then
 								rarity = "Common"
@@ -189,38 +219,36 @@ function PokerJoker.replacecards(area, replace, bypass_eternal, keep) --Cards no
 								rarity = rarity,
 								area = G.pack_cards,
 							})
-						elseif area[i].ability.set and not area[i].ability.eternal then
-							--[[if G.STATE == G.STATES.STANDARD_PACK or area == G.hand.cards then
-								SMODS.destroy_cards(area[i])
+						elseif area[i].ability.set and not area[i].ability.eternal and area[i] ~= keeporiginal then
+							if
+								area[i].ability.set == "Enhanced"
+								or area[i].ability.set == "Default"
+								or area[i].ability.set == "Playing Card"
+								or area == G.hand.cards
+							then
+								area[i]:juice_up()
 								local _suit, _rank =
 									pseudorandom_element(SMODS.Suits).key, pseudorandom_element(SMODS.Ranks).card_key
-								local acard = SMODS.create_card({
-									set = "Playing Card",
-									area = area,
-								})
-								SMODS.change_base(acard, _suit, _rank)
-								acard:set_ability(SMODS.poll_enhancement())
-								acard:set_edition(poll_edition())
-							else]]
-								local set = area[i].ability.set
-								SMODS.destroy_cards(area[i])
-								SMODS.add_card({
-									set = set,
-									area = G.pack_cards,
-								})
+								SMODS.change_base(area[i], _suit, _rank)
+								area[i]:set_ability(SMODS.poll_enhancement())
+								area[i]:set_edition(poll_edition())
+							else
+								for i = 1, #G.P_CENTER_POOLS.Consumeables do
+									if G.P_CENTER_POOLS.Consumeables[i].set == set then
+										tab[#tab + 1] = G.P_CENTER_POOLS.Consumeables[i].key
+									end
+								end
 							end
+							local set = area[i].ability.set
+							SMODS.destroy_cards(area[i])
+							SMODS.add_card({
+								set = set,
+								area = G.pack_cards,
+							})
 						end
 					end
 				end
 			end
 		end
 	end
---end
-
-local files = {
-	"joker",
-	"backs",
-}
-for i, v in pairs(files) do
-	assert(SMODS.load_file(v..".lua"))()
 end
