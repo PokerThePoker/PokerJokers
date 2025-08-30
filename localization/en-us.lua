@@ -11,6 +11,22 @@ return {
                     "{C:attention}#1#{} items from",
                     "your collection",
                 }
+			},
+			b_pok_reroll_deck = {
+				name = "Reroll Deck",
+				text = {
+					"Allow the ability",
+					"to {C:green}Reroll{}",
+					"any {C:attention}Booster{} Pack's",
+					"contents up to",
+					"{C:attention}#1#{} times",
+					"per shop"
+				},
+				unlock = {
+                    "Discover at least",
+                    "{C:attention}#1#{} items from",
+                    "your collection",
+                }
 			}
 		},
 		Joker = {
