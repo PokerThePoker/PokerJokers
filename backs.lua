@@ -26,9 +26,9 @@ SMODS.Back {
 }
 
 SMODS.Back {
-    key = "reroll_deck",
+    key = "recycling_deck",
     pos = { x = 4, y = 2 },
-    config = { hand_size = 1 },
+    config = {},
     atlas = "pok_placeholders",
     unlocked = false,
     loc_vars = function(self, info_queue, back)

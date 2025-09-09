@@ -12,8 +12,8 @@ SMODS.Joker {
 	key = "seven_fingers",
 	config = { extra = { discard_limit = 2 } },
 	rarity = 2,
-	atlas = "pok_jokers",
-	pos = { x = 0, y = 0 },
+	atlas = "pok_placeholders",
+	pos = { x = 1, y = 0 },
 	cost = 7,
 	blueprint_compat = false,
 	loc_vars = function(self, info_queue, card)
@@ -40,12 +40,11 @@ SMODS.Joker {
     end,
 	calculate = function(self, card, context)
 		if context.discard and not context.blueprint then
-			card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chips_mod
-			return {
-				delay = 0.2,
-				message = "+" .. card.ability.extra.chips,
-				colour = G.C.CHIPS,
-			}
+			SMODS.scale_card(card, {
+                ref_table = card.ability.extra,
+                ref_value = "chips",
+                scalar_value = "chips_mod",
+            })
 		end
 		if context.joker_main then
 			return {
@@ -59,8 +58,8 @@ SMODS.Joker {
 	key = "three_quarter_joker",
 	config = { extra = { blind_size = 0.75 } },
 	rarity = 2,
-	atlas = "pok_jokers",
-	pos = { x = 0, y = 0 },
+	atlas = "pok_placeholders",
+	pos = { x = 1, y = 0 },
 	cost = 6,
 	blueprint_compat = false,
 	loc_vars = function(self, info_queue, card)
@@ -80,7 +79,7 @@ SMODS.Joker {
 	key = "hermit_joker",
 	config = { extra = { Xmult = 2, mult = 20 } },
 	rarity = 1,
-	atlas = "pok_jokers",
+	atlas = "pok_placeholders",
 	pos = { x = 0, y = 0 },
 	cost = 5,
 	blueprint_compat = true,
@@ -105,10 +104,10 @@ SMODS.Joker {
 if next(SMODS.find_mod("entr")) then
 	SMODS.Joker {
 	key = "sunscreen",
-	config = { extra = { plus_asc = -2, Xmult = 3 } },
+	config = { extra = { plus_asc = -1, Xmult = 3 } },
 	rarity = 2,
-	atlas = "pok_jokers",
-	pos = { x = 0, y = 0 },
+	atlas = "pok_placeholders",
+	pos = { x = 1, y = 0 },
 	cost = 7,
 	blueprint_compat = true,
 	loc_vars = function(self, info_queue, card)
@@ -123,6 +122,33 @@ if next(SMODS.find_mod("entr")) then
     end,
 }
 end
+
+SMODS.Joker {
+	key = "warrior",
+	config = { extra = { mult = 0, mult_gain = 4 } },
+	rarity = 1,
+	atlas = "pok_placeholders",
+	pos = { x = 0, y = 0 },
+	cost = 4,
+	blueprint_compat = false,
+	loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.mult, card.ability.extra.mult_gain } }
+    end,
+	calculate  = function(self, card, context)
+		if context.end_of_round and context.game_over == false and context.main_eval and context.beat_boss and not context.blueprint then
+			SMODS.scale_card(card, {
+                ref_table = card.ability.extra,
+                ref_value = "mult",
+                scalar_value = "mult_gain",
+            })
+		end
+		if context.joker_main then
+			return {
+				mult = card.ability.extra.mult
+			}
+		end
+	end
+}
 
 ----------------------------------------------
 ------------MOD CODE END----------------------

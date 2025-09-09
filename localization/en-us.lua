@@ -12,8 +12,8 @@ return {
                     "your collection",
                 }
 			},
-			b_pok_reroll_deck = {
-				name = "Reroll Deck",
+			b_pok_recycling_deck = {
+				name = "Recycling Deck",
 				text = {
 					"Allow the ability",
 					"to {C:green}Reroll{}",
@@ -64,6 +64,15 @@ return {
 				text = {
 					"{X:mult,C:white}X#2#{} Mult",
 					"{C:gold}#1#{} Ascension Power"
+				},
+			},
+			j_pok_warrior = {
+				name = "Warrior",
+				text = {
+					"This Joker gains",
+					"{C:mult}+#2#{} Mult when",
+					"{C:attention}Boss Blind{} is defeated",
+					"{C:inactive}(Currently{} {C:mult}+#1#{} {C:inactive}Mult){}"
 				},
 			},
 		},
