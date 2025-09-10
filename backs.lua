@@ -40,9 +40,7 @@ SMODS.Back {
     check_for_unlock = function(self, args)
         return args.type == 'discover_amount' and args.amount >= 160
     end,
-    apply = function(self, back)
-        G.GAME.modifiers.can_reroll_booster = true
-    end
+    --functionality is now stored in booster-reroll.toml, modifier is still functional however
 }
 ----------------------------------------------
 ------------MOD CODE END----------------------
