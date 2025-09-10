@@ -75,6 +75,13 @@ return {
 					"{C:inactive}(Currently{} {C:mult}+#1#{} {C:inactive}Mult){}"
 				},
 			},
+			j_pok_recyclist = {
+				name = "Recyclist",
+				text = {
+					"Allows rerolling of",
+					"{C:attention}Booster Packs{}"
+				},
+			},
 		},
 	},
 }

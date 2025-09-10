@@ -150,5 +150,24 @@ SMODS.Joker {
 	end
 }
 
+SMODS.Joker {
+	key = "recyclist",
+	config = {},
+	rarity = 2,
+	atlas = "pok_placeholders",
+	pos = { x = 1, y = 0 },
+	cost = 6,
+	blueprint_compat = false,
+	loc_vars = function(self, info_queue, card)
+        return {}
+    end,
+    add_to_deck = function(self, card, from_debuff)
+		G.GAME.modifiers.can_reroll_booster = true
+    end,
+    remove_from_deck = function(self, card, from_debuff)
+		G.GAME.modifiers.can_reroll_booster = false
+    end
+}
+
 ----------------------------------------------
 ------------MOD CODE END----------------------
