@@ -161,12 +161,7 @@ SMODS.Joker {
 	loc_vars = function(self, info_queue, card)
         return {}
     end,
-    add_to_deck = function(self, card, from_debuff)
-		G.GAME.modifiers.can_reroll_booster = true
-    end,
-    remove_from_deck = function(self, card, from_debuff)
-		G.GAME.modifiers.can_reroll_booster = false
-    end
+	--functionality is now stored in booster-reroll.toml, modifier is still functional however
 }
 
 ----------------------------------------------

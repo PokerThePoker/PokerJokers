@@ -20,7 +20,7 @@ payload = '''
                         {n=G.UIT.R,config={minh =0.2}, nodes={}},
                         {n=G.UIT.R,config={align = "tm",padding = 0.2, minh = 1.2, minw = 1.8, r=0.15,colour = G.C.GREY, one_press = true, button = 'skip_booster', hover = true,shadow = true, func = 'can_skip_booster'}, nodes = {
                             {n=G.UIT.T, config={text = localize('b_skip'), scale = 0.5, colour = G.C.WHITE, shadow = true, focus_args = {button = 'y', orientation = 'bm'}, func = 'set_button_pip'}}}}}}}}}}}}
-        if G.GAME.modifiers.can_reroll_booster then
+        if G.GAME.modifiers.can_reroll_booster or next(SMODS.find_card("j_pok_recyclist")) or (G.GAME and G.GAME.selected_back.effect.center.key == "b_pok_recycling_deck") then
             return t2
         else
         return t
