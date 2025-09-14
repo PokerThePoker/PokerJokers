@@ -42,5 +42,39 @@ SMODS.Back {
     end,
     --functionality is now stored in booster-reroll.toml, modifier is still functional however
 }
+
+SMODS.Back {
+    key = "primary",
+    pos = { x = 4, y = 2 },
+    config = { extra = { hands = 1, discards = 1, money = 4 } },
+    atlas = "pok_placeholders",
+    loc_vars = function(self, info_queue, back)
+        return { vars = { self.config.extra.hands, self.config.extra.discards, self.config.extra.money } }
+    end,
+    unlocked = true,
+    calculate = function(self, back, context)
+        if context.setting_blind then
+            local value = pseudorandom('pok_primary', 1, 3)
+            if value == 1 then
+                G.GAME.current_round.hands_left = G.GAME.current_round.hands_left + self.config.extra.hands
+                return {
+                    message = "+1 Hand",
+                    colour = G.C.BLUE
+                }
+            elseif value == 2 then
+                G.GAME.current_round.discards_left = G.GAME.current_round.discards_left + self.config.extra.discards
+                return {
+                    message = "+1 Discard",
+                    colour = G.C.RED
+                }
+            elseif value == 3 then
+                return {
+                    dollars = self.config.extra.money
+                }
+            end
+        end
+    end
+}
+
 ----------------------------------------------
 ------------MOD CODE END----------------------

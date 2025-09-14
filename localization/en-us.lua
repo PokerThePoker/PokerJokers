@@ -27,7 +27,16 @@ return {
                     "{C:attention}#1#{} items from",
                     "your collection",
                 }
-			}
+			},
+			b_pok_primary = {
+				name = "Primary Deck",
+				text = {
+					"When {C:attention}Blind{} is",
+					"selected, either gain",
+					"{C:blue}+#1#{} hand, {C:red}+#2#{} discard",
+					"or {C:money}$#3#{}"
+				},
+			},
 		},
 		Joker = {
 			j_pok_seven_fingers = {
@@ -83,5 +92,24 @@ return {
 				},
 			},
 		},
+		Enhanced = {
+			m_pok_gradient = {
+				name = "Gradient Card",
+				text = {
+					"{C:chips}+#1#{} bonus chips",
+					"{C:mult}+#2#{} Mult"
+				},
+			},
+		},
+		Tarot = {
+			c_pok_the_acquantinces = {
+				name = "The Acquantinces",
+				text = {
+					"Converts up to",
+					"{C:attention}#1#{} selected cards",
+					"into {C:attention}Gradient Cards{}"
+				}
+			}
+		}
 	},
 }

@@ -4,7 +4,9 @@ PokerJoker = SMODS.current_mod
 local files = {
 	"joker",
 	"backs",
-	"funcs"
+	"funcs",
+	"enhancements",
+	"tarots"
 }
 for i, v in pairs(files) do
 	assert(SMODS.load_file(v..".lua"))()
