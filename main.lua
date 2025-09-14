@@ -6,7 +6,7 @@ local files = {
 	"backs",
 	"funcs",
 	"enhancements",
-	"tarots"
+	"tarots",
 }
 for i, v in pairs(files) do
 	assert(SMODS.load_file(v..".lua"))()

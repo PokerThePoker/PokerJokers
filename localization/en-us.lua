@@ -96,7 +96,7 @@ return {
 			m_pok_gradient = {
 				name = "Gradient Card",
 				text = {
-					"{C:chips}+#1#{} bonus chips",
+					"{C:chips}+#1#{} extra chips",
 					"{C:mult}+#2#{} Mult"
 				},
 			},
@@ -105,9 +105,9 @@ return {
 			c_pok_the_acquantinces = {
 				name = "The Acquantinces",
 				text = {
-					"Converts up to",
-					"{C:attention}#1#{} selected cards",
-					"into {C:attention}Gradient Cards{}"
+					"Enhances {C:attention}#1#{}",
+					"selected cards to",
+					"{C:attention}Gradient Cards{}"
 				}
 			}
 		}
