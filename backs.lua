@@ -76,5 +76,26 @@ SMODS.Back {
     end
 }
 
+SMODS.Back {
+    key = "purple",
+    pos = { x = 4, y = 2 },
+    config = { play_limit = 1, discard_limit = 1 },
+    atlas = "pok_placeholders",
+    loc_vars = function(self, info_queue, back)
+        return { vars = { self.config.play_limit, self.config.discard_limit } }
+    end,
+    apply = function(self, back)
+        G.E_MANAGER:add_event(Event({
+			trigger = "after",
+			delay = 0.7,
+			func = function()
+				SMODS.change_play_limit(self.config.play_limit)
+				SMODS.change_discard_limit(self.config.discard_limit)
+				return true
+			end,
+		}))
+    end
+}
+
 ----------------------------------------------
 ------------MOD CODE END----------------------

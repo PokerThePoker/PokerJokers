@@ -37,6 +37,13 @@ return {
 					"or {C:money}$#3#{}"
 				},
 			},
+			b_pok_purple = {
+				name = "Purple Deck",
+				text = {
+					"{C:attention}+#1#{} card",
+					"selection limit"
+				},
+			},
 		},
 		Joker = {
 			j_pok_seven_fingers = {
