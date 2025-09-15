@@ -164,5 +164,25 @@ SMODS.Joker {
 	--functionality is now stored in booster-reroll.toml, modifier is still functional however
 }
 
+SMODS.Joker {
+	key = "trenchcoat",
+	config = {  extra_slots_used = 2, extra = { Xmult = 3 } },
+	rarity = 2,
+	atlas = "pok_placeholders",
+	pos = { x = 1, y = 0 },
+	cost = 6,
+	blueprint_compat = false,
+	loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.Xmult, card.ability.extra_slots_used } }
+    end,
+	calculate = function(self, card, context)
+		if context.joker_main then
+			return {
+				Xmult = card.ability.extra.Xmult,
+			}
+		end
+	end,
+}
+
 ----------------------------------------------
 ------------MOD CODE END----------------------

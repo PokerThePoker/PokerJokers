@@ -98,6 +98,12 @@ return {
 					"{C:attention}Booster Packs{}"
 				},
 			},
+			j_pok_trenchcoat = {
+				name = "Three Jokers in a Trenchcoat",
+				text = {
+					"{X:red,C:white}X#1#{} Mult"
+				},
+			},
 		},
 		Enhanced = {
 			m_pok_gradient = {
