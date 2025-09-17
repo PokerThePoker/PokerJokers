@@ -11,3 +11,7 @@ local files = {
 for i, v in pairs(files) do
 	assert(SMODS.load_file(v..".lua"))()
 end
+
+SMODS.current_mod.optional_features = {
+	retrigger_joker = true
+}

@@ -130,7 +130,7 @@ SMODS.Joker {
 	atlas = "pok_placeholders",
 	pos = { x = 0, y = 0 },
 	cost = 4,
-	blueprint_compat = false,
+	blueprint_compat = true,
 	loc_vars = function(self, info_queue, card)
         return { vars = { card.ability.extra.mult, card.ability.extra.mult_gain } }
     end,
@@ -171,7 +171,7 @@ SMODS.Joker {
 	atlas = "pok_placeholders",
 	pos = { x = 1, y = 0 },
 	cost = 6,
-	blueprint_compat = false,
+	blueprint_compat = true,
 	loc_vars = function(self, info_queue, card)
         return { vars = { card.ability.extra.Xmult, card.ability.extra_slots_used } }
     end,
@@ -182,6 +182,24 @@ SMODS.Joker {
 			}
 		end
 	end,
+}
+
+SMODS.Joker {
+	key = "begging_child",
+	config = { extra = { repititions = 1 } },
+	rarity = 3,
+	atlas = "pok_placeholders",
+	pos = { x = 2, y = 0 },
+	cost = 7,
+	blueprint_compat = true,
+	loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.repititions } }
+    end,
+	calculate  = function(self, card, context)
+		if context.retrigger_joker_check and context.other_card:is_rarity(1) then
+    		return { repetitions = card.ability.extra.repititions }
+		end
+	end
 }
 
 ----------------------------------------------

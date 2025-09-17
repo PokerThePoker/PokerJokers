@@ -104,6 +104,13 @@ return {
 					"{X:red,C:white}X#1#{} Mult"
 				},
 			},
+			j_pok_begging_child = {
+				name = "Begging Child",
+				text = {
+					"Retrigger all {C:common}Common{}",
+					"Jokers {C:attention}#1#{} additional time"
+				},
+			},
 		},
 		Enhanced = {
 			m_pok_gradient = {
