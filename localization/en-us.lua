@@ -56,10 +56,9 @@ return {
 			j_pok_trash_bin = {
 				name = "Trash Bin",
 				text = {
-					"This Joker gains {C:chips}+#2#{}",
-					"Chips for every {C:attention}card{}",
-					"discarded",
-					"{C:inactive}(Currently{} {C:chips}+#1#{} {C:inactive}Chips){}"
+					"{C:mult}+#1#{} Mult for every",
+					"card discarded this round",
+					"{C:inactive}(Currently{} {C:mult}+#2#{} {C:inactive}Mult){}",
 				},
 			},
 			j_pok_three_quarter_joker = {

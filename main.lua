@@ -13,5 +13,8 @@ for i, v in pairs(files) do
 end
 
 SMODS.current_mod.optional_features = {
-	retrigger_joker = true
+	retrigger_joker = true,
+	cardareas = {
+		discard = true
+	}
 }

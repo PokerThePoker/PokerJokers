@@ -29,26 +29,19 @@ SMODS.Joker {
 
 SMODS.Joker {
 	key = "trash_bin",
-	config = { extra = { chips = 0, chips_mod = 1 } },
-	rarity = 2,
+	config = { extra = { mult = 1 } },
+	rarity = 1,
 	atlas = "pok_jokers",
 	pos = { x = 1, y = 0 },
-	cost = 6,
+	cost = 5,
 	blueprint_compat = true,
 	loc_vars = function(self, info_queue, card)
-        return { vars = { card.ability.extra.chips, card.ability.extra.chips_mod } }
+        return { vars = { card.ability.extra.mult, card.ability.extra.mult * (G.discard and #G.discard.cards or 0) } }
     end,
 	calculate = function(self, card, context)
-		if context.discard and not context.blueprint then
-			SMODS.scale_card(card, {
-                ref_table = card.ability.extra,
-                ref_value = "chips",
-                scalar_value = "chips_mod",
-            })
-		end
 		if context.joker_main then
 			return {
-				chips = card.ability.extra.chips
+				mult = card.ability.extra.mult * #G.discard.cards
 			}
 		end
 	end,
@@ -196,7 +189,7 @@ SMODS.Joker {
         return { vars = { card.ability.extra.repititions } }
     end,
 	calculate  = function(self, card, context)
-		if context.retrigger_joker_check and context.other_card:is_rarity(1) then
+		if context.retrigger_joker_check and context.other_card.ability and context.other_card.ability.set == "Joker" and context.other_card:is_rarity(1) then
     		return { repetitions = card.ability.extra.repititions }
 		end
 	end
