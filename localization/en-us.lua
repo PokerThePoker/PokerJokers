@@ -110,6 +110,16 @@ return {
 					"Jokers {C:attention}#1#{} additional time"
 				},
 			},
+			j_pok_star_box = {
+				name = "Star Box",
+				text = {
+					"This Joker gains",
+					"{C:chips}+#2#{} Chip when a",
+					"card with {C:six_stars}Star{} suit",
+					"is scored",
+					"{C:inactive}(Currently{} {C:chips}+#1#{} {C:inactive}Chips){}"
+				},
+			},
 		},
 		Enhanced = {
 			m_pok_gradient = {
