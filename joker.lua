@@ -159,7 +159,7 @@ SMODS.Joker {
 
 SMODS.Joker {
 	key = "trenchcoat",
-	config = {  extra_slots_used = 2, extra = { Xmult = 3 } },
+	config = { extra_slots_used = 2, extra = { Xmult = 3 } },
 	rarity = 2,
 	atlas = "pok_placeholders",
 	pos = { x = 1, y = 0 },
@@ -183,7 +183,7 @@ SMODS.Joker {
 	rarity = 3,
 	atlas = "pok_placeholders",
 	pos = { x = 2, y = 0 },
-	cost = 7,
+	cost = 8,
 	blueprint_compat = true,
 	loc_vars = function(self, info_queue, card)
         return { vars = { card.ability.extra.repititions } }
@@ -223,6 +223,29 @@ if next(SMODS.find_mod("SixSuits")) then
 		end,
 	}
 end
+
+SMODS.Joker {
+	key = "bar_chart_race",
+	config = { extra = { odds = 8 } },
+	rarity = 1,
+	atlas = "pok_placeholders",
+	pos = { x = 0, y = 0 },
+	cost = 5,
+	blueprint_compat = true,
+	loc_vars = function(self, info_queue, card)
+		local numerator, denominator = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, 'pok_bar_chart_race')
+        return { vars = { numerator, denominator } }
+    end,
+	calculate = function(self, card, context)
+		if context.before then
+			for k,v in pairs(G.GAME.hands) do
+				if SMODS.pseudorandom_probability(card, 'pok_bar_chart_race', 1, card.ability.extra.odds) then
+					SMODS.smart_level_up_hand(card, k, nil, 1)
+				end
+			end	
+		end
+	end,
+}
 
 ----------------------------------------------
 ------------MOD CODE END----------------------

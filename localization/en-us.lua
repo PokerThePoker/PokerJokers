@@ -120,6 +120,15 @@ return {
 					"{C:inactive}(Currently{} {C:chips}+#1#{} {C:inactive}Chips){}"
 				},
 			},
+			j_pok_bar_chart_race = {
+				name = "Bar Chart Race",
+				text = {
+					"When hand is played,",
+					"each {C:attention}poker hand{} has",
+					"a {C:green}#1# in #2#{} chance",
+					"to be leveled up"
+				},
+			},
 		},
 		Enhanced = {
 			m_pok_gradient = {
