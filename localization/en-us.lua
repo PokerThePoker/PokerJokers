@@ -129,6 +129,14 @@ return {
 					"to be leveled up"
 				},
 			},
+			j_pok_wheel_of_names = {
+				name = "Wheel of Names",
+				text = {
+					"When hand is played",
+					"level up a random",
+					"{C:attention}poker hand{}"
+				},
+			},
 		},
 		Enhanced = {
 			m_pok_gradient = {

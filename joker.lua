@@ -64,6 +64,7 @@ SMODS.Joker {
             G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
             play_sound("cancel")
             card:juice_up()
+			--- haha 6 7
         end
     end,
 }
@@ -226,7 +227,7 @@ end
 
 SMODS.Joker {
 	key = "bar_chart_race",
-	config = { extra = { odds = 8 } },
+	config = { extra = { odds = 10 } },
 	rarity = 1,
 	atlas = "pok_placeholders",
 	pos = { x = 0, y = 0 },
@@ -245,6 +246,30 @@ SMODS.Joker {
 			end	
 		end
 	end,
+}
+
+SMODS.Joker {
+	key = "wheel_of_names",
+	config = { extra = {} },
+	rarity = 1,
+	atlas = "pok_placeholders",
+	pos = { x = 0, y = 0 },
+	cost = 4,
+	blueprint_compat = true,
+	loc_vars = function(self, info_queue, card)
+        return { vars = {} }
+    end,
+	calculate = function(self, card, context)
+		if context.before then
+			local _poker_hands = {}
+            for handname, _ in pairs(G.GAME.hands) do
+                if SMODS.is_poker_hand_visible(handname) then
+                    _poker_hands[#_poker_hands + 1] = handname
+                end
+            end
+            SMODS.smart_level_up_hand(nil, pseudorandom_element(_poker_hands, 'pok_wheel_of_names'), false, 1)
+		end
+	end
 }
 
 ----------------------------------------------
