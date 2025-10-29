@@ -314,7 +314,7 @@ function PokerJoker.replacecards(area, replace, bypass_eternal, keep, keeporigin
 	end
 end
 
-function PokerJoker.replace_playing_cards(area, _flip) 
+function PokerJoker.replace_playing_cards(area, _flip)
 	for i = 1, #area do
 		if area[i]:get_id() then
 			if _flip then
@@ -411,5 +411,25 @@ function G.FUNCS.toggle_shop(e)
 	if G.shop then
 		G.GAME.reroll_remaining = 3
 	end
-    return ret
+	return ret
+end
+
+PokerJoker.replace_booster_cards = function()
+	local booster = SMODS.OPENED_BOOSTER.config.center
+	local cards = G.pack_cards.cards
+	for i = 1, #cards do
+		local new_card = booster:create_card({ ability = booster.config }, i)
+		if not new_card.config then
+			newer_card = SMODS.create_card(new_card)
+		else
+			newer_card = new_card
+		end
+		G.E_MANAGER:add_event(Event({
+			func = function()
+				copy_card(newer_card, cards[i])
+				cards[i]:juice_up()
+				newer_card:remove()
+			end
+		}))
+	end
 end
