@@ -137,6 +137,15 @@ return {
 					"{C:attention}poker hand{}"
 				},
 			},
+			j_pok_hoarder = {
+				name = "Hoarder",
+				text = {
+					"Earn {C:money}$#1#{} at end",
+					"of round for each",
+					"consumable held",
+					"{C:inactive}(Currently{} {C:money}$#2#{}{C:inactive}){}"
+				},
+			},
 		},
 		Enhanced = {
 			m_pok_gradient = {

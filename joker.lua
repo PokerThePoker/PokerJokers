@@ -272,5 +272,24 @@ SMODS.Joker {
 	end
 }
 
+SMODS.Joker {
+	key = "hoarder",
+	config = { extra = { money = 3 } },
+	rarity = 1,
+	atlas = "pok_placeholders",
+	pos = { x = 0, y = 0 },
+	cost = 6,
+	blueprint_compat = false,
+	loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.money, card.ability.extra.money * (G.consumeables and #G.consumeables.cards or 0) } }
+    end,
+	calc_dollar_bonus = function(self, card)
+        local bonus = card.ability.extra.money * #G.consumeables.cards
+		if bonus > 0 then
+			return bonus
+		end
+    end
+}
+
 ----------------------------------------------
 ------------MOD CODE END----------------------
