@@ -132,7 +132,7 @@ return {
 			j_pok_wheel_of_names = {
 				name = "Wheel of Names",
 				text = {
-					"When hand is played",
+					"When hand is played,",
 					"level up a random",
 					"{C:attention}poker hand{}"
 				},
@@ -144,6 +144,13 @@ return {
 					"of round for each",
 					"consumable held",
 					"{C:inactive}(Currently{} {C:money}$#2#{}{C:inactive}){}"
+				},
+			},
+			j_pok_oops_all_4s = {
+				name = "Oops! All 4s",
+				text = {
+					"Sets all listed",
+					"probabilities to {C:green}#1# in #2#{}"
 				},
 			},
 		},

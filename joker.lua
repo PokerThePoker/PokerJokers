@@ -291,5 +291,25 @@ SMODS.Joker {
     end
 }
 
+SMODS.Joker {
+	key = "oops_all_4s",
+	config = { extra = { numerator = 1, denominator = 4 } },
+	rarity = 2,
+	atlas = "pok_placeholders",
+	pos = { x = 1, y = 0 },
+	cost = 8,
+	blueprint_compat = false,
+	loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.numerator, card.ability.extra.denominator } }
+    end,
+	calculate = function(self, card, context)
+        if context.mod_probability and not context.blueprint then
+            return {
+                numerator = card.ability.extra.numerator,
+				denominator = card.ability.extra.denominator
+            }
+        end
+    end,
+}
 ----------------------------------------------
 ------------MOD CODE END----------------------
