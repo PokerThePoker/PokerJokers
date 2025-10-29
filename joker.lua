@@ -311,5 +311,35 @@ SMODS.Joker {
         end
     end,
 }
+
+SMODS.Joker {
+	key = "beet_soup",
+	config = { extra = { Xmult = 3 } },
+	rarity = 3,
+	atlas = "pok_placeholders",
+	pos = { x = 2, y = 0 },
+	cost = 8,
+	blueprint_compat = true,
+	loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.Xmult } }
+    end,
+    calculate = function(self, card, context)
+        if context.joker_main then
+            local all_red_suits = true
+            for _, playing_card in ipairs(context.scoring_hand) do
+                if not playing_card:is_suit('Hearts', nil, true) and not playing_card:is_suit('Diamonds', nil, true) then
+                    all_red_suits = false
+                    break
+                end
+            end
+            if all_red_suits then
+                return {
+                    xmult = card.ability.extra.Xmult
+                }
+            end
+        end
+    end
+}
+
 ----------------------------------------------
 ------------MOD CODE END----------------------

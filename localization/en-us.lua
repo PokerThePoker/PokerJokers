@@ -153,6 +153,14 @@ return {
 					"probabilities to {C:green}#1# in #2#{}"
 				},
 			},
+			j_pok_beet_soup = {
+				name = "Beet Soup",
+				text = {
+					"{X:red,C:white}X#1#{} Mult if scoring",
+					"hand only contains {C:hearts}Hearts{}",
+					"and {C:diamonds}Diamonds{}"
+				},
+			},
 		},
 		Enhanced = {
 			m_pok_gradient = {
