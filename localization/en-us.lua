@@ -170,6 +170,15 @@ return {
 					"{C:mult}+#2#{} Mult"
 				},
 			},
+			m_pok_quarter = {
+				name = "Quarter Card",
+				text = {
+					"{C:chips}+#1#{} Chips if {C:spades}Spades{} suit",
+					"{C:mult}+#2#{} Mult if {C:clubs}Clubs{} suit",
+					"Earn {C:money}$#3#{} if {C:diamonds}Diamonds{} suit",
+					"{X:red,C:white}X#4#{} Mult if {C:hearts}Hearts{} suit"
+				},
+			},
 		},
 		Tarot = {
 			c_pok_the_acquantinces = {
