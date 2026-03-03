@@ -161,6 +161,14 @@ return {
 					"and {C:diamonds}Diamonds{}"
 				},
 			},
+			j_pok_jollsly_joker = {
+				name = "Jollsly Joker",
+				text = {
+					"{C:mult}+#1#{} Mult after",
+					"playing {C:attention}#3# #4#s{}",
+					"{C:inactive}(#2#/#3#){}"
+				},
+			},
 		},
 		Enhanced = {
 			m_pok_gradient = {

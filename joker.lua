@@ -340,5 +340,29 @@ SMODS.Joker {
         end
     end
 }
+
+SMODS.Joker {
+	key = "jollsly_joker",
+	config = { extra = { mult = 50, current = 0, req = 8, type = 'Pair' } },
+	rarity = 2,
+	atlas = "pok_placeholders",
+	pos = { x = 1, y = 0 },
+	cost = 8,
+	blueprint_compat = true,
+	loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.mult, card.ability.extra.current, card.ability.extra.req, card.ability.extra.type } }
+    end,
+	calculate = function(self, card, context)
+		if context.before and context.scoring_name == card.ability.extra.type and not context.blueprint then
+			card.ability.extra.current = card.ability.extra.current + 1
+		end
+		if context.joker_main and card.ability.extra.current >= card.ability.extra.req then
+			return {
+				mult = card.ability.extra.mult
+			}
+		end
+	end,
+}
+
 ----------------------------------------------
 ------------MOD CODE END----------------------
