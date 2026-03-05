@@ -95,8 +95,7 @@ SMODS.Joker {
     end,
 }
 
-if next(SMODS.find_mod("entr")) then
-	SMODS.Joker {
+SMODS.Joker {
 	key = "sunscreen",
 	config = { extra = { plus_asc = -1, Xmult = 3 } },
 	rarity = 2,
@@ -115,7 +114,6 @@ if next(SMODS.find_mod("entr")) then
         end
     end,
 }
-end
 
 SMODS.Joker {
 	key = "warrior",
