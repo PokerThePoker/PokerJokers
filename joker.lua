@@ -362,5 +362,32 @@ SMODS.Joker {
 	end,
 }
 
+SMODS.Joker {
+	key = "high_stakes",
+	config = { extra = { emult = 1.25, ante_mod = 1, odds = 3 } },
+	rarity = 3,
+	atlas = "pok_placeholders",
+	pos = { x = 2, y = 0 },
+	cost = 10,
+	blueprint_compat = true,
+	loc_vars = function(self, info_queue, card)
+		local numerator, denominator = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, 'pok_high_stakes')
+        return { vars = { card.ability.extra.emult, card.ability.extra.ante_mod, numerator, denominator } }
+    end,
+	calculate = function(self, card, context)
+		if context.joker_main then
+			return {
+				emult = card.ability.extra.emult
+			}
+		end
+		if context.end_of_round and context.game_over == false and context.main_eval and not context.blueprint then
+			if SMODS.pseudorandom_probability(card, 'pok_high_stakes', 1, card.ability.extra.odds) then
+				ease_ante(card.ability.extra.ante_mod)
+				G.GAME.win_ante = G.GAME.win_ante + card.ability.extra.ante_mod
+			end
+		end
+	end,
+}
+
 ----------------------------------------------
 ------------MOD CODE END----------------------

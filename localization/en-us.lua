@@ -169,6 +169,16 @@ return {
 					"{C:inactive}(#2#/#3#){}"
 				},
 			},
+			j_pok_high_stakes = {
+				name = "High Stakes",
+				text = {
+					"{X:slib_emult,C:white}^#1#{} Mult",
+					"{C:green}#3# in #4#{} chance to",
+					"increase {C:attention}Ante{} and",
+					"{C:attention}Winning Ante{} by {C:attention}#2#{} at",
+					"end of round"
+				},
+			},
 		},
 		Enhanced = {
 			m_pok_gradient = {
