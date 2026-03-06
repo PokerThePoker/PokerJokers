@@ -169,13 +169,11 @@ return {
 					"{C:inactive}(#2#/#3#){}"
 				},
 			},
-			j_pok_high_stakes = {
-				name = "High Stakes",
+			j_pok_sloppy_joe = {
+				name = "Sloppy Joe",
 				text = {
 					"{X:slib_emult,C:white}^#1#{} Mult",
-					"{C:green}#3# in #4#{} chance to",
-					"increase {C:attention}Ante{} and",
-					"{C:attention}Winning Ante{} by {C:attention}#2#{} at",
+					"Loses {X:slib_emult,C:white}^#2#{} Mult at",
 					"end of round"
 				},
 			},

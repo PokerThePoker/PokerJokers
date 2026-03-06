@@ -363,16 +363,15 @@ SMODS.Joker {
 }
 
 SMODS.Joker {
-	key = "high_stakes",
-	config = { extra = { emult = 1.25, ante_mod = 1, odds = 3 } },
+	key = "sloppy_joe",
+	config = { extra = { emult = 1.25, emult_loss = 0.05 } },
 	rarity = 3,
 	atlas = "pok_placeholders",
 	pos = { x = 2, y = 0 },
-	cost = 10,
+	cost = 9,
 	blueprint_compat = true,
 	loc_vars = function(self, info_queue, card)
-		local numerator, denominator = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, 'pok_high_stakes')
-        return { vars = { card.ability.extra.emult, card.ability.extra.ante_mod, numerator, denominator } }
+        return { vars = { card.ability.extra.emult, card.ability.extra.emult_loss } }
     end,
 	calculate = function(self, card, context)
 		if context.joker_main then
@@ -381,9 +380,20 @@ SMODS.Joker {
 			}
 		end
 		if context.end_of_round and context.game_over == false and context.main_eval and not context.blueprint then
-			if SMODS.pseudorandom_probability(card, 'pok_high_stakes', 1, card.ability.extra.odds) then
-				ease_ante(card.ability.extra.ante_mod)
-				G.GAME.win_ante = G.GAME.win_ante + card.ability.extra.ante_mod
+			SMODS.scale_card(card, {
+                ref_table = card.ability.extra,
+                ref_value = "emult",
+                scalar_value = "emult_loss",
+				operation = '-',
+				scaling_message = {
+					message = card.ability.extra.emult .. " Mult",
+				}
+            })
+			if card.ability.extra.emult <= 1 then
+				SMODS.destroy_cards(card, nil, nil, true)
+				return {
+					message = "Eaten!"
+				}
 			end
 		end
 	end,
