@@ -386,7 +386,7 @@ SMODS.Joker {
                 scalar_value = "emult_loss",
 				operation = '-',
 				scaling_message = {
-					message = card.ability.extra.emult .. " Mult",
+					message = "-^" .. card.ability.extra.emult_loss .. " Mult",
 				}
             })
 			if card.ability.extra.emult <= 1 then
