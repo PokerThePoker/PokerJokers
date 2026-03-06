@@ -365,10 +365,10 @@ SMODS.Joker {
 SMODS.Joker {
 	key = "sloppy_joe",
 	config = { extra = { emult = 1.25, emult_loss = 0.05 } },
-	rarity = 3,
+	rarity = "pok_atypical",
 	atlas = "pok_placeholders",
-	pos = { x = 2, y = 0 },
-	cost = 9,
+	pos = { x = 3, y = 0 },
+	cost = 10,
 	blueprint_compat = true,
 	loc_vars = function(self, info_queue, card)
         return { vars = { card.ability.extra.emult, card.ability.extra.emult_loss } }

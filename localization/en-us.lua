@@ -207,4 +207,12 @@ return {
 			}
 		}
 	},
+	misc = {
+		dictionary = {
+			k_pok_atypical = "Atypical",
+		},
+		labels = {
+			pok_atypical = "Atypical",
+		}
+	}
 }

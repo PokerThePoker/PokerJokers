@@ -18,3 +18,16 @@ SMODS.current_mod.optional_features = {
 		discard = true
 	}
 }
+
+SMODS.Rarity {
+    key = "atypical",
+    default_weight = 0.01,
+    badge_colour = HEX('ff4f90'),
+    get_weight = function(self, weight, object_type)
+        return weight
+    end,
+}
+
+loc_colour()
+
+G.ARGS.LOC_COLOURS.pok_atypical = HEX('ff4f90')
