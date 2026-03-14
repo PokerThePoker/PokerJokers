@@ -399,5 +399,27 @@ SMODS.Joker {
 	end,
 }
 
+SMODS.Joker {
+	key = "mostest_closest",
+	config = {},
+	rarity = 3,
+	atlas = "pok_placeholders",
+	pos = { x = 2, y = 0 },
+	cost = 9,
+	blueprint_compat = true,
+	loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = G.P_CENTERS["c_mercury"]
+    end,
+	calculate = function(self, card, context)
+		if context.using_consumeable and context.consumeable.ability.set == "Planet" and context.consumeable.config.center.key ~= "c_mercury" and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
+			SMODS.add_card {
+				set = 'Planet',
+				key = 'c_mercury',
+                key_append = 'pok_mostest_closest'
+            }
+		end
+	end,
+}
+
 ----------------------------------------------
 ------------MOD CODE END----------------------

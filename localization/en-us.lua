@@ -178,6 +178,15 @@ return {
 					"end of round"
 				},
 			},
+			j_pok_mostest_closest = {
+				name = "Mostest Closest",
+				text = {
+					"When a {C:attention}Planet Card{} that",
+					"is not {C:attention}Mercury{} is",
+					"used, create a {C:attention}Mercury{}",
+					"{C:inactive}(Must have room){}"
+				},
+			},
 		},
 		Enhanced = {
 			m_pok_gradient = {
