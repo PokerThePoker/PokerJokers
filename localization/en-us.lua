@@ -56,8 +56,9 @@ return {
 			j_pok_trash_bin = {
 				name = "Trash Bin",
 				text = {
-					"{C:mult}+#1#{} Mult for every",
-					"card discarded this round",
+					"{C:mult}+#1#{} Mult for each",
+					"card discarded or previously",
+					"played this round",
 					"{C:inactive}(Currently{} {C:mult}+#2#{} {C:inactive}Mult){}",
 				},
 			},
